@@ -24,7 +24,7 @@ const LostPage = () => {
   }
 
   return (
-    <div className="lostpage">
+    <div className="lost-page">
       <img
         alt="Confused Kermit being lost"
         src={

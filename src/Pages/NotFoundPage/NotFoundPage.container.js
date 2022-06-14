@@ -8,7 +8,7 @@ import "./NotFoundPage.scss";
  */
 const NotFoundPage = () => {
   return (
-    <div className="NotFoundPage">
+    <div className="not-found-page">
       <img
         alt="Gandalf warning you of a 404 page, you ar enot supposed to be here"
         src={"https://memegenerator.net/img/instances/40433556.jpg"}
