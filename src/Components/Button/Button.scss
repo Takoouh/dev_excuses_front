@@ -1,0 +1,19 @@
+.custom-button{
+    cursor: pointer;
+    margin: 50px auto;
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    font-size: 40px;
+    padding: 10px 5px;
+    background-color: rgb(223, 8, 8);
+    color: white;
+    border: none;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+    box-shadow: 5px 5px 15px 5px #000000;
+    &:active{        
+        -webkit-box-shadow: inherit; 
+        box-shadow: inherit;
+    }
+}

@@ -1,0 +1,31 @@
+.homepage{
+    height: 100vh;
+
+    h1{
+        width: 100%;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        padding: 20px 0;
+        color: white;
+        background-color: #97b7d6;
+    }
+    
+    .excuse {
+        &_container{
+            display: flex;
+            margin: 50px;
+        }
+    
+        &_text{
+            border-radius: 5px;;
+            display: block;
+            margin: auto;
+            padding: 50px 10px;
+            width: 500px;
+            text-align: center;
+            background-color: rgb(53, 53, 53);
+            color: white;
+        }
+    }
+}
