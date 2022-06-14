@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+
 import Button from "../../Components/Button/Button.component";
+import Excuse from "../../Components/Excuse/Excuse.component";
 
 import { fetchExcuses } from "../../services/excusesServices";
 
@@ -46,11 +48,7 @@ const HomePage = () => {
     <div className="homepage">
       <h1>Excuses de dev</h1>
       {displayedExcuseId >= 0 && ( //don't display component if none to display
-        <div className="excuse_container">
-          <p className="excuse_text">
-            {excusesList[displayedExcuseId].message}
-          </p>
-        </div>
+        <Excuse excuseMessage={excusesList[displayedExcuseId].message} />
       )}
       <Button label={"Générer une excuse"} onClick={handleExcuseButtonClick} />
     </div>
