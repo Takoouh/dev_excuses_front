@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import AddExcuseFormContainer from "../../Components/AddExcuseForm/AddExcuseForm.container";
 import Button from "../../Components/Button/Button.component";
 import Excuse from "../../Components/Excuse/Excuse.component";
+import Loader from "../../Components/Loader/Loader.component";
 
 import { fetchExcuses } from "../../services/excusesServices";
 
@@ -13,29 +14,32 @@ import "./HomePage.scss";
  * @returns {React.JSXElementConstructor}
  */
 const HomePage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [showAddExcuseModal, setShowAddExcuseModal] = useState(false);
   const [excusesList, setExcusesList] = useState([]);
   const [displayedExcuseId, setDisplayedExcuseId] = useState();
 
   /**
    * generate random number depending on given range
-   * @param {number} range - number of possibities (including 0)
+   * @param {number} startingRange - minimum outcome (included)
+   * @param {number} endingRange - maximum outcome (not included)
    * @returns {number}
    */
-  const getRandomNumberFromRange = (range) => Math.floor(Math.random() * range);
+  const getRandomNumberFromRange = (startingRange, endingRange) =>
+    Math.floor(Math.random() * (endingRange - startingRange) + startingRange);
 
   /**
    * set State of displayedId with new generated id
    * @return {void}
    */
   const handleGenerateNewExcuse = () => {
-    let determinedExcuseId = getRandomNumberFromRange(excusesList.length);
+    let determinedExcuseId = getRandomNumberFromRange(0, excusesList.length);
 
     // if same as previous excuse, we generate another
     while (determinedExcuseId === displayedExcuseId) {
-      determinedExcuseId = getRandomNumberFromRange(excusesList.length);
+      determinedExcuseId = getRandomNumberFromRange(0, excusesList.length);
     }
-    setDisplayedExcuseId(determinedExcuseId);
+    triggerFakeLoader(() => setDisplayedExcuseId(determinedExcuseId));
   };
 
   /**
@@ -59,7 +63,23 @@ const HomePage = () => {
   const handleExcuseSubmitCallback = (newExcusesList) => {
     setShowAddExcuseModal(false);
     setExcusesList(newExcusesList);
-    setDisplayedExcuseId(newExcusesList.length - 1);
+
+    triggerFakeLoader(() => setDisplayedExcuseId(newExcusesList.length - 1));
+  };
+
+  /**
+   * Simulate a loading
+   * - randomly load between 1s and 5s
+   * - then execute function passed on callback
+   * @param {function} callBackFunction - executed when loader fade out
+   */
+  const triggerFakeLoader = (callBackFunction) => {
+    setIsLoading(true);
+    const randomTime = getRandomNumberFromRange(1000, 5001);
+    setTimeout(() => {
+      setIsLoading(false);
+      callBackFunction();
+    }, randomTime);
   };
 
   useEffect(() => {
@@ -80,6 +100,8 @@ const HomePage = () => {
         label={"Ajouter une excuse"}
         onClick={handleNewExcuseFormModalToggle}
       />
+
+      {isLoading && <Loader />}
 
       {showAddExcuseModal && (
         <AddExcuseFormContainer
