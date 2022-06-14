@@ -14,6 +14,9 @@ import "./HomePage.scss";
  * @returns {React.JSXElementConstructor}
  */
 const HomePage = () => {
+  const [homePageAdditionnalClass, setHomePageAdditionnalClass] = useState(
+    "homepage_animation_init"
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [showAddExcuseModal, setShowAddExcuseModal] = useState(false);
   const [excusesList, setExcusesList] = useState([]);
@@ -87,10 +90,16 @@ const HomePage = () => {
     fetchExcuses().then((response) => {
       setExcusesList(response.data);
     });
+
+    //we trigger end of animation of component by setting additionnal class
+    setTimeout(
+      () => setHomePageAdditionnalClass("homepage_animation_on"),
+      2000 //2s
+    );
   }, []);
 
   return (
-    <div className="homepage">
+    <div className={`homepage ${homePageAdditionnalClass}`}>
       <h1>Excuses de dev</h1>
       {displayedExcuseId >= 0 && ( //don't display component if none to display
         <Excuse excuseMessage={excusesList[displayedExcuseId].message} />

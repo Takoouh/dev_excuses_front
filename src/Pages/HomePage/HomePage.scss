@@ -2,12 +2,73 @@
     height: 100vh;
 
     h1{
-        width: 100%;
+        width: 100%;        
+        height:100vh;
+        line-height: 100vh;
         font-size: 50px;
         font-weight: bold;
         text-align: center;
         padding: 20px 0;
         color: white;
         background-color: #97b7d6;
+        transition: height 0.5s;
+    }
+}
+
+.homepage_animation_init {
+    overflow: hidden;
+    h1{
+        height:100vh;
+        line-height: 100vh;
+        animation: color-fadein 2s;
+        -moz-animation: color-fadein 2s; /* Firefox */
+        -webkit-animation: color-fadein 2s; /* Safari and Chrome */
+        -o-animation: color-fadein 2s; /* Opera */
+    }
+}
+
+.homepage_animation_on {
+    h1{
+        
+        height:10vh;
+        line-height: 10vh;
+        transition: all 0.5;
+        // animation: fadein 2s;
+        // -moz-animation: fadein 2s; /* Firefox */
+        // -webkit-animation: fadein 2s; /* Safari and Chrome */
+        // -o-animation: fadein 2s; /* Opera */
+    }
+}
+
+@keyframes color-fadein {
+    from {
+        color: #97b7d6;
+    }
+    to {
+        color: white;
+    }
+}
+@-moz-keyframes color-fadein { /* Firefox */
+    from {
+        color: #97b7d6;
+    }
+    to {
+        color: white;
+    }
+}
+@-webkit-keyframes color-fadein { /* Safari and Chrome */
+    from {
+        color: #97b7d6;
+    }
+    to {
+        color: white;
+    }
+}
+@-o-keyframes color-fadein { /* Opera */
+    from {
+        color: #97b7d6;
+    }
+    to {
+        color: white;
     }
 }
